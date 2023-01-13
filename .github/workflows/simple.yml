@@ -16,5 +16,5 @@ jobs:
               run: import os
               shell: python
             - name: python command pay
-              run: print (platform.processor())
+              run: print (os.processor())
               shell: python
