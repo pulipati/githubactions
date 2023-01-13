@@ -13,7 +13,8 @@ jobs:
                   node -v
                   npm -v
             - name: python command
-              run:  |
-              import os
-              print(os.environ['PATH'])
+              run: import os
+              shell: python
+            - name: python command pay
+              run: print("test")
               shell: python
