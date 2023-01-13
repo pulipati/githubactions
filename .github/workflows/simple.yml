@@ -14,6 +14,7 @@ jobs:
                   npm -v
             - name: python command
               run: |
-                  import os
-                  print (os.processor())
+                  import platform
+                  print 
+                  (platform.processor())
               shell: python
