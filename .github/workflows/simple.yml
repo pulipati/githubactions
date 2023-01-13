@@ -13,8 +13,7 @@ jobs:
                   node -v
                   npm -v
             - name: python command
-              run: import os
-              shell: python
-            - name: python command pay
-              run: print (os.processor())
+              run: |
+                  import os
+                  print (os.processor())
               shell: python
