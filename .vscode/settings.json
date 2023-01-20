@@ -1,12 +1,9 @@
 {
-   "editor.fontSize": 18,
-   //"window.zoomLevel": 4,
-   //"workbench.activityBar.visible": false,
- //  "workbench.statusBar.visible": false,
-   "gitlens.currentLine.enabled": true,
-   "terminal.integrated.fontsize":18,
-   
-
- 
-
+  "editor.fontSize": 18,
+  //"window.zoomLevel": 4,
+  //"workbench.activityBar.visible": false,
+  //  "workbench.statusBar.visible": false,
+  "gitlens.currentLine.enabled": true,
+  "terminal.integrated.fontsize": 18,
+  "svn.ignoreMissingSvnWarning": true,
 }
