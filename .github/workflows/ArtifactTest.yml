@@ -18,12 +18,9 @@ jobs:
  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: npm install and build webpack
-        run: |
-          npm install
-          npm run build --if-present
-      - uses: actions/upload-artifact@main
-        with:
-          name: webpack artifacts
-          path: public/
+     - name: Label when approved
+       uses: pullreminders/label-when-approved-action@main
+       env:
+         APPROVALS: "1"
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ADD_LABEL: "approved"
