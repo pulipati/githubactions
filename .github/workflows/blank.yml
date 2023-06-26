@@ -19,7 +19,8 @@ jobs:
       - uses: actions/github-script@v6
         if: github.event.label.name == 'actions-importer-running'
         with:
-          script: |
+          name: cleaning 
+          script: | 
             await github.rest.issues.removeLabel({
               owner: context.repo.owner,
               repo: context.repo.repo,
