@@ -1,8 +1,7 @@
 name: Check Issue Label
 
 on:
-  issues:
-    types: [commented]
+ workflow_dispatch 
 
 jobs:
   check_label_job:
