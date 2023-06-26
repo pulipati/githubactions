@@ -2,7 +2,7 @@ name: Check Issue Label
 
 on:
   issues:
-    types: [created]
+    types: [commented]
 
 jobs:
   check_label_job:
