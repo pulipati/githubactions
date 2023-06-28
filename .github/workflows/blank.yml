@@ -1,22 +1,35 @@
-name: Check Issue Label
+name: Preview
 
 on:
-  issue_comment:
-    types: [created]
+workflow_dispatch
 
 jobs:
-  check_label_job:
+  haslabel:
+    name: analyse labels
     runs-on: ubuntu-latest
-
+    outputs:
+      preview: ${{ steps.haslabel.outputs.labeled-preview }}
     steps:
-      - name: Remove label
-        if: always()
-        uses: actions/github-script@v6
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.4.1
         with:
-          script: |
-            github.issues.removeLabel({
-              owner: context.repo.owner,
-              repo: context.repo.repo, 
-              issue_number: context.payload.issue.number,
-              name: 'actions-importer-running'
-            });
+          access_token: ${{ github.token }}
+      - uses: actions/checkout@v2
+      - name: Labeled to preview
+        id: haslabel
+        uses: DanielTamkin/HasLabel@v1.0.4
+        with:
+          contains: 'preview'
+  deploy:
+    name: deploy
+    needs: haslabel
+    if: needs.haslabel.outputs.preview
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
