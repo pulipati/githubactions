@@ -9,16 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check if label exists
-        id: check_label
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const labels = context.payload.issue.labels.map(label => label.name);
-            core.setOutput('labelExists', labels.includes('actions-importer-running'));
-
       - name: Remove label
-        if: steps.check_label.outputs.labelExists == 'true'
+        if: always()
         uses: actions/github-script@v6
         with:
           script: |
